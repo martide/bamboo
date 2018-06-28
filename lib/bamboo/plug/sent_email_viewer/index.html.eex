@@ -175,17 +175,17 @@
           <p class="email-detail-body">
             <script>
             function adjustFrameHeight(iframe) {
-              var body = iframe.contentWindow.document.body;
-              iframe.style.height = (body.scrollHeight + body.offsetHeight - body.clientHeight) + "px";
+              var contentWindow = iframe.contentWindow;
+              iframe.style.height = (contentWindow.outerHeight) + "px";
             }
             </script>
             <iframe onload="adjustFrameHeight(this)" src="<%= "#{@base_path}/#{Bamboo.SentEmail.get_id(@selected_email)}/html" %>"></iframe>
           </p>
 
           <h3 class="email-detail-body-label">Text Body</h3>
-          <p class="email-detail-body">
-            <%= Bamboo.SentEmailViewerPlug.Helper.format_text(@selected_email.text_body) %>
-          </p>
+          <pre class="email-detail-body">
+            <%= @selected_email.text_body %>
+          </pre>
         </section>
       </section>
     </main>
